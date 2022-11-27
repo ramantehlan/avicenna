@@ -1,5 +1,4 @@
 {{ define "main" }}
-
 {{ partial "blog/blog_navbar.html" (dict "1" "about" ) }}
 
 {{ $paginator := .Paginate (where .Data.Pages "Type" "blog") }}

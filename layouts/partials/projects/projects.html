@@ -9,8 +9,15 @@
         {{range $page := sort $rscPages "Params.date" "desc"}}
         <div class="project row w-100">
             <div class="section-1 w-100">
+
                 <span class="project-title">
-                    {{$page.Params.title}}
+                {{ if "$page.Params.link" }}
+                <a class="text-decoration-none black" href="{{$page.Params.link}}" target="_blank">
+                    <b>{{$page.Params.title}}</b>
+                </a>
+                {{else}}
+                    <b>{{$page.Params.title}}</b>
+                {{end}}
                 </span>
             </div>
 
@@ -26,6 +33,15 @@
                 {{end}}
             </div>
             {{end}}
+
+            {{if $page.Params.details}}
+            <div class="other_info row ">
+                <div class="col">
+                    {{$page.Params.details}}
+                </div>
+            </div>
+            {{end}}
+
 
 
         </div>

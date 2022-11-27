@@ -3,18 +3,53 @@
 {{ $aboutPage := .Site.GetPage $content_type }}
 
 {{ if or $aboutPage.Params.academia $aboutPage.Params.interests}}
-{{ if $aboutPage.Params.interests }}
-<div class="interests col ">
-    <h4 class="main_color">Interests</h4>
-    <ul>
-        {{range $aboutPage.Params.interests }}
-        <li>
-            {{.}}
-        </li>
-        {{end}}
-    </ul>
+
+
+{{if $aboutPage.Params.work}}
+<div class="academia col">
+    <h4 class="main_color">Professional</h4>
+    {{range $work := $aboutPage.Params.work}}
+    <div class="row">
+        <div class="course col">
+            <div class="institution_dates row">
+                <div class="institution col" id="institution_title">
+                    {{ if $work.company.link }} 
+                    <a class="text-decoration-none black" href="{{$work.company.link}}" target="_blank">
+                    <b>{{$work.company.name}}</b>
+                    </a>
+                    {{else}}
+                    <b>{{$work.company.name}}</b>
+                    {{end}}
+                </div>
+                <div class="main_color dates col-md-auto  justify-content-end">
+                    {{$work.company.start_date}}
+                    {{ if $work.company.end_date }}
+                    - {{$work.company.end_date}}
+                    {{else}}
+                    - present
+                    {{end}}
+                </div>
+            </div>
+            <div class="degree_major row">
+                <div class="text-muted col">
+                    {{$work.company.title}}{{if $work.company.location }}, {{$work.company.location}} {{end}}
+                </div>
+            </div>
+
+            {{if $work.company.details}}
+            <div class="other_info row ">
+                <div class="col">
+                    {{$work.company.details}}
+                </div>
+            </div>
+            {{end}}
+        </div>
+    </div>
+    {{end}}
 </div>
 {{end}}
+{{end}}
+
 
 {{if $aboutPage.Params.academia}}
 <div class="academia col">
@@ -24,7 +59,14 @@
         <div class="course col">
             <div class="institution_dates row">
                 <div class="institution col" id="institution_title">
-                    {{$academia.course.institution}}
+
+                   {{ if $academia.course.link }} 
+                    <a class="text-decoration-none black" href="{{$academia.course.link}}" target="_blank">
+                    <b>{{$academia.course.institution}}</b>
+                    </a>
+                    {{else}}
+                    <b>{{$academia.course.institution}}</b>
+                    {{end}}
                 </div>
                 <div class="main_color dates col-md-auto  justify-content-end">
                     {{$academia.course.start_date}}
@@ -37,7 +79,7 @@
             </div>
             <div class="degree_major row">
                 <div class="text-muted col">
-                    {{$academia.course.degree}} {{$academia.course.major}}
+                    {{$academia.course.degree}}, {{$academia.course.major}}
 
                     {{if $academia.course.minor }}
                     , Minor: {{$academia.course.minor}}
@@ -55,6 +97,20 @@
         </div>
     </div>
     {{end}}
-</div>
+
+    <br><br>
+{{ if $aboutPage.Params.interests }}
+    <h4 class="main_color">Interests</h4>
+    <ul>
+        {{range $aboutPage.Params.interests }}
+        <li>
+            {{.}}
+        </li>
+        {{end}}
+    </ul>
 {{end}}
+
+    <br><br>
+</div>
+
 {{end}}

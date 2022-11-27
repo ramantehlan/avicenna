@@ -4,9 +4,12 @@
 {{- partial "core/head.html" . -}}
 
 <body class="container d-flex flex-column min-vh-100">
+    <br>
     {{- block "main" . }}{{- end }}
-
+    <br>
+    <br>
     {{- partial "core/footer.html" . -}}
+
     {{- partial "core/script.html" . -}}
 </body>
 

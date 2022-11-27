@@ -2,10 +2,9 @@
 
 {{ $aboutPage := .Site.GetPage $content_type }}
 
-<div class="row w-100 justify-content-center">
-    <img class="rounded-circle  " src="images/profile.png" alt="profile_picture" id="profile_picture" />
+<div class="row w-100 justify-content-center ">
+    <img class="rounded-circle " src="images/me.png" alt="profile_picture" id="profile_picture" />
 </div>
-
 
 {{ if $aboutPage.Params.full_name }}
 <div class=" row w-100 justify-content-center main_color" id="full_name">
@@ -45,7 +44,25 @@
         {{ $github := index $aboutPage.Params.socials "github"}}
         {{ $linkedin := index $aboutPage.Params.socials "linkedin"}}
         {{ $cv := $aboutPage.Params.cv }}
+        {{ $resume := $aboutPage.Params.resume }}
         {{ $blog := $aboutPage.Params.blog}}
+
+        {{ if $blog }}
+        <a id="blog_logo" class="main_color" href='/blog' target="_blank">
+           Blog 
+        </a> &ensp;.
+        {{ end }}
+        {{if $cv}} 
+        <a id="blog_logo" class="main_color" href='{{$cv}}' target="_blank">
+            CV
+        </a> &ensp;.
+        {{end}}
+        {{if $resume}}
+        <a id="blog_logo" class="main_color" href='{{$resume}}' target="_blank">
+                Resume
+        </a> &ensp;.
+        {{end}}
+
 
 
         {{if $google_scholar}}
@@ -53,6 +70,8 @@
             <i class="ai ai-2x ai-google-scholar academic_icons_customize"></i>
         </a>
         {{end}}
+
+
 
         {{ if $github }}
         <a class="main_color" rel="me" href='https://github.com/{{$github}}' target="_blank">
@@ -84,18 +103,9 @@
         </a>
         {{end}}
 
-        {{if $cv}}
-        <a class="main_color" href='{{$cv}}' target="_blank">
-            <i class="ai ai-2x ai-cv academic_icons_customize"></i>
-        </a>
-        {{end}}
 
-        {{ if $blog }}
-        <a id="blog_logo" class="main_color" href='/blog' target="_blank">
-            <i class="ai ai-2x ai-blog academic_icons_customize">Blog</i>
 
-        </a>
-        {{ end }}
+
 
 
     </div>
